@@ -25,9 +25,8 @@ public class Main {
                     System.out.println("Entrou na opção 2, Usuário");
                     break; 
             }
-
-            scan.close();
         } 
-        while (op == 3);   
+        while (op != 3); 
+        scan.close();  
     }
 }
