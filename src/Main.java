@@ -57,12 +57,42 @@ public class Main {
 
                     }
                     while(opAdmin != 7);
-
-
                     break;
 
                 case 2:
-                    System.out.println("Entrou na opção 2, Usuário");
+                    int opUsuario = 0;
+
+                    // Submenu para opções de usuários
+                    do {
+                        
+                        System.out.println("================ Menu usuário ================");
+                        System.out.println("1 - Reaizar empréstimo");
+                        System.out.println("2 - Realizar devolução");
+                        System.out.println("3 - Buscar livros");
+                        System.out.println("4 - Renovar empréstimo");
+                        System.out.println("5 - Busca avançada");
+                        System.out.println("6 - Sair");
+                        System.out.println("Informe a opção desejada ou digite (6) para sair");
+                        opUsuario = scan.nextInt();
+
+                        switch(opUsuario) {
+                            case 1:
+                                System.out.println("Empréstismo realizado");
+                                break;
+                            case 2:
+                                System.out.println("Devolução realizada");
+                                break;
+                            case 3:
+                                System.out.println("Buscando livros");
+                                break;
+                            case 4:
+                                System.out.println("Empréstimo renovado");
+                                break;
+                            case 5:
+                                System.out.println("Executando busca avançada");
+                                break;                
+                        }
+                    } while (opUsuario != 6);
                     break; 
             }
         } 
