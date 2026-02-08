@@ -1,3 +1,4 @@
+package entidades;
 public class Livro {
     private int codigoLivro;
     private String titulo;

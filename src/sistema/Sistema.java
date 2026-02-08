@@ -1,9 +1,13 @@
+package sistema;
 import java.util.Scanner;
+import entidades.Livro;
+import servicos.LivroService;
 
-public class Main {
+public class Sistema {
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
+        LivroService livroService = new LivroService();
         int op = 0;
         
         // Menu principal do sistema
@@ -25,38 +29,70 @@ public class Main {
                     do {
                         System.out.println("================ Menu administração ================");
                         System.out.println("1 - Cadastrar livro");
-                        System.out.println("2 - Cadastrar usuário");
-                        System.out.println("3 - Pesquisar usuário");
-                        System.out.println("4 - Listar empréstimos");
-                        System.out.println("5 - Relatórios");
-                        System.out.println("6 - Busca avançada");
-                        System.out.println("7 - Sair");
+                        System.out.println("2 - Listar livros");
+                        System.out.println("3 - Cadastrar usuário");
+                        System.out.println("4 - Pesquisar usuário");
+                        System.out.println("5 - Listar empréstimos");
+                        System.out.println("6 - Relatórios");
+                        System.out.println("7 - Busca avançada");
+                        System.out.println("8 - Sair");
                         System.out.println("Informe a opção desejada ou digite (7) para sair");
                         opAdmin = scan.nextInt();
 
                         switch(opAdmin) {
                             case 1:
-                                System.out.println("Livro cadastrado");
+                                //Cadastrar livro
+                                System.out.println("Código do livro: ");
+                                int codigo = scan.nextInt();
+                                scan.nextLine();
+
+                                System.out.println("Titulo: ");
+                                String titulo = scan.nextLine();
+
+                                System.out.println("Autor: ");
+                                String autor = scan.nextLine();
+
+                                System.out.println("Editora: ");
+                                String editora = scan.nextLine();
+
+                                System.out.println("Ano publicação: ");
+                                int ano = scan.nextInt();
+
+                                Livro livro = new Livro(codigo, titulo, autor, editora, ano);
+
+                                livroService.cadastrarLivro(livro);
+
+                                System.out.println("Livro cadastrado com sucesso!");
+
                                 break;
                             case 2:
+                                //Listar livros cadastrados
+                                for (Livro l : livroService.getLivros()) {
+                                    System.out.println("Código: " + l.getCodigoLivro() + " - " + 
+                                                       "Título: " + l.getTitulo() + " - " + 
+                                                       "Autor: " + l.getAutor() + 
+                                                       "Ano de publicação: " + l.getAnoPublicacao());
+                                }
+                                break;
+                            case 3:
                                 System.out.println("Usuário cadastrado");
                                 break;
-                            case 3: 
+                            case 4: 
                                 System.out.println("Pesquisando usuário");
                                 break;
-                            case 4: 
+                            case 5: 
                                 System.out.println("Listando empréstimos");
                                 break;
-                            case 5: 
+                            case 6: 
                                 System.out.println("Exibindo relatório");
                                 break;
-                            case 6: 
+                            case 7: 
                                 System.out.println("Realizando busca avançada");
                                 break;                    
                         }
 
                     }
-                    while(opAdmin != 7);
+                    while(opAdmin != 8);
                     break;
 
                 case 2:
