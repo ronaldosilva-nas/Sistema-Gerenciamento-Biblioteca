@@ -102,7 +102,7 @@ public class Sistema {
                     do {
                         
                         System.out.println("================ Menu usuário ================");
-                        System.out.println("1 - Reaizar empréstimo");
+                        System.out.println("1 - Realizar empréstimo");
                         System.out.println("2 - Realizar devolução");
                         System.out.println("3 - Buscar livros");
                         System.out.println("4 - Renovar empréstimo");
