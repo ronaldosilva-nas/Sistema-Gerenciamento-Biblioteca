@@ -14,7 +14,7 @@ public class UsuarioService {
         usuarios.add(usuario);
     }
 
-    public List<Usuario> getUsuario() {
+    public List<Usuario> getUsuarios() {
         return usuarios;
     }
 }

@@ -34,11 +34,12 @@ public class Sistema {
                         System.out.println("1 - Cadastrar livro");
                         System.out.println("2 - Listar livros");
                         System.out.println("3 - Cadastrar usuário");
-                        System.out.println("4 - Pesquisar usuário");
-                        System.out.println("5 - Listar empréstimos");
-                        System.out.println("6 - Relatórios");
-                        System.out.println("7 - Busca avançada");
-                        System.out.println("8 - Sair");
+                        System.out.println("4 - Listar usuarios");
+                        System.out.println("5 - Pesquisar usuário");
+                        System.out.println("6 - Listar empréstimos");
+                        System.out.println("7 - Relatórios");
+                        System.out.println("8 - Busca avançada");
+                        System.out.println("9 - Sair");
                         System.out.println("Informe a opção desejada ou digite (7) para sair");
                         opAdmin = scan.nextInt();
 
@@ -103,21 +104,31 @@ public class Sistema {
 
                                 break;
                             case 4: 
+                                //Listar livros cadastrados
+                                for (Usuario l : usuarioService.getUsuarios()) {
+                                    System.out.println("Matrícula: " + l.getMatricula() + " - " + 
+                                                       "Nome: " + l.getNome() + " - " + 
+                                                       "Curso: " + l.getCurso() + " - " +
+                                                       "Telefone: " + l.getTelefone() + " - " +
+                                                       "Data de cadastro: " + l.getDataCadastro());
+                                }                   
+                                break;    
+                            case 5: 
                                 System.out.println("Pesquisando usuário");
                                 break;
-                            case 5: 
+                            case 6: 
                                 System.out.println("Listando empréstimos");
                                 break;
-                            case 6: 
+                            case 7: 
                                 System.out.println("Exibindo relatório");
                                 break;
-                            case 7: 
+                            case 8: 
                                 System.out.println("Realizando busca avançada");
                                 break;                    
                         }
 
                     }
-                    while(opAdmin != 8);
+                    while(opAdmin != 9);
                     break;
 
                 case 2:
