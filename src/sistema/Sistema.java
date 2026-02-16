@@ -79,7 +79,7 @@ public class Sistema {
                                 }
                                 break;
                             case 3:
-                                //Obter dados para cadastrar usúario
+                                //Obter dados para cadastrar usuário
                                 System.out.println("Informe a matrícula do usuário: ");
                                 int matricula = scan.nextInt();
                                 scan.nextLine();
