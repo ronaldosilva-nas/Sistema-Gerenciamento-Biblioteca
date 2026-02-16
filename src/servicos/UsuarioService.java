@@ -17,4 +17,13 @@ public class UsuarioService {
     public List<Usuario> getUsuarios() {
         return usuarios;
     }
+
+    public Usuario buscarPorMatricula(int matricula) {
+        for (Usuario u : usuarios) {
+            if(u.getMatricula() == matricula) {
+                return u;
+            }
+        }
+        return null;
+    }
 }

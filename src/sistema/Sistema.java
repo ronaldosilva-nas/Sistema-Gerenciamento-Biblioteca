@@ -40,7 +40,7 @@ public class Sistema {
                         System.out.println("7 - Relatórios");
                         System.out.println("8 - Busca avançada");
                         System.out.println("9 - Sair");
-                        System.out.println("Informe a opção desejada ou digite (7) para sair");
+                        System.out.println("Informe a opção desejada ou digite (9) para sair");
                         opAdmin = scan.nextInt();
 
                         switch(opAdmin) {
@@ -74,7 +74,7 @@ public class Sistema {
                                 for (Livro l : livroService.getLivros()) {
                                     System.out.println("Código: " + l.getCodigoLivro() + " - " + 
                                                        "Título: " + l.getTitulo() + " - " + 
-                                                       "Autor: " + l.getAutor() + 
+                                                       "Autor: " + l.getAutor() + " - " +
                                                        "Ano de publicação: " + l.getAnoPublicacao());
                                 }
                                 break;
@@ -104,7 +104,7 @@ public class Sistema {
 
                                 break;
                             case 4: 
-                                //Listar livros cadastrados
+                                //Listar usuários cadastrados
                                 for (Usuario l : usuarioService.getUsuarios()) {
                                     System.out.println("Matrícula: " + l.getMatricula() + " - " + 
                                                        "Nome: " + l.getNome() + " - " + 
@@ -114,7 +114,24 @@ public class Sistema {
                                 }                   
                                 break;    
                             case 5: 
-                                System.out.println("Pesquisando usuário");
+                                System.out.println("Para buscar usuário, informe a matrícula: ");
+                                int buscarMatricula = scan.nextInt();
+                                scan.nextLine();
+
+                                Usuario usuarioEncontrado = usuarioService.buscarPorMatricula(buscarMatricula);
+
+                                if(usuarioEncontrado != null) {
+                                    System.out.println("Usuário encontrado!");
+                                    System.out.println("Nome: " + usuarioEncontrado.getNome() + " - " +
+                                                       "Curso: " + usuarioEncontrado.getCurso() + " - " +
+                                                       "Telefone: " + usuarioEncontrado.getTelefone() + " - " +
+                                                       "Data de cadastro: " + usuarioEncontrado.getDataCadastro());
+
+                                }
+                                else {
+                                    System.out.println("Usuário não encontrado!");
+                                }
+
                                 break;
                             case 6: 
                                 System.out.println("Listando empréstimos");
