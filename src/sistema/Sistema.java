@@ -1,13 +1,16 @@
 package sistema;
 import java.util.Scanner;
 import entidades.Livro;
+import entidades.Usuario;
 import servicos.LivroService;
+import servicos.UsuarioService;
 
 public class Sistema {
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
         LivroService livroService = new LivroService();
+        UsuarioService usuarioService = new UsuarioService();
         int op = 0;
         
         // Menu principal do sistema
@@ -41,7 +44,7 @@ public class Sistema {
 
                         switch(opAdmin) {
                             case 1:
-                                //Cadastrar livro
+                                //Obter dados de usuário para cadastrar livro
                                 System.out.println("Código do livro: ");
                                 int codigo = scan.nextInt();
                                 scan.nextLine();
@@ -75,7 +78,29 @@ public class Sistema {
                                 }
                                 break;
                             case 3:
-                                System.out.println("Usuário cadastrado");
+                                //Obter dados para cadastrar usúario
+                                System.out.println("Informe a matrícula do usuário: ");
+                                int matricula = scan.nextInt();
+                                scan.nextLine();
+
+                                //nome
+                                System.out.println("Informe o nome do usuário: ");
+                                String nome = scan.nextLine();
+
+                                //curso
+                                System.out.println("Informe o curso: ");
+                                String curso = scan.nextLine();
+
+                                //telefone
+                                System.out.println("Informe o número de telefone: ");
+                                String telefone = scan.nextLine();
+
+                                Usuario usuario = new Usuario(matricula, nome, curso, telefone);
+
+                                usuarioService.cadastrarUsuario(usuario);
+
+                                System.out.println("Usuário cadastrado com sucesso! " + "data: " + usuario.getDataCadastro());
+
                                 break;
                             case 4: 
                                 System.out.println("Pesquisando usuário");
