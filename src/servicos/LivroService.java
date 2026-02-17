@@ -17,4 +17,13 @@ public class LivroService {
     public List<Livro> getLivros() {
         return livros;
     }
+
+    public Livro buscarPorCodigo(int codigo) {
+        for(Livro l : livros) {
+            if(l.getCodigoLivro() == codigo) {
+                return l;
+            }
+        }
+        return null;
+    }
 }

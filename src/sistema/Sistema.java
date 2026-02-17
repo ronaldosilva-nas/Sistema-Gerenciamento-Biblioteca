@@ -84,15 +84,12 @@ public class Sistema {
                                 int matricula = scan.nextInt();
                                 scan.nextLine();
 
-                                //nome
                                 System.out.println("Informe o nome do usuário: ");
                                 String nome = scan.nextLine();
 
-                                //curso
                                 System.out.println("Informe o curso: ");
                                 String curso = scan.nextLine();
 
-                                //telefone
                                 System.out.println("Informe o número de telefone: ");
                                 String telefone = scan.nextLine();
 
@@ -114,6 +111,7 @@ public class Sistema {
                                 }                   
                                 break;    
                             case 5: 
+                                //Buscar usuário 
                                 System.out.println("Para buscar usuário, informe a matrícula: ");
                                 int buscarMatricula = scan.nextInt();
                                 scan.nextLine();
@@ -172,7 +170,24 @@ public class Sistema {
                                 System.out.println("Devolução realizada");
                                 break;
                             case 3:
-                                System.out.println("Buscando livros");
+                                //Bucar livro
+                                System.out.println("Para buscar livro, informe o código: ");
+                                int buscarCodigo = scan.nextInt();
+                                scan.nextLine();
+
+                                Livro livroEncontrado = livroService.buscarPorCodigo(buscarCodigo);
+
+                                if(livroEncontrado != null) {
+                                    System.out.println("Livro encontrado!");
+                                    System.out.println("Título: " + livroEncontrado.getTitulo() + " - " +
+                                                       "Autor: " + livroEncontrado.getAutor() + " - " +
+                                                       "Editora: " + livroEncontrado.getEditora() + " - " +
+                                                       "Ano de publicação: " + livroEncontrado.getAnoPublicacao()); 
+                                }
+                                else {
+                                    System.out.println("Livro não encontrado!");
+                                }
+
                                 break;
                             case 4:
                                 System.out.println("Empréstimo renovado");
