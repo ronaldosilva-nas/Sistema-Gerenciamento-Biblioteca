@@ -176,14 +176,14 @@ public class Sistema {
                                 int buscarCodigo = scan.nextInt();
                                 scan.nextLine();
 
-                                Livro livroEncontrado = livroService.buscarPorCodigo(buscarCodigo);
+                                Optional<Livro> livroOptional = livroService.buscarPorCodigo(buscarCodigo);
 
-                                if(livroEncontrado != null) {
+                                if(livroOptional.isPresent()) {
                                     System.out.println("Livro encontrado!");
-                                    System.out.println("Título: " + livroEncontrado.getTitulo() + " - " +
-                                                       "Autor: " + livroEncontrado.getAutor() + " - " +
-                                                       "Editora: " + livroEncontrado.getEditora() + " - " +
-                                                       "Ano de publicação: " + livroEncontrado.getAnoPublicacao()); 
+                                    System.out.println("Título: " + livroOptional.get().getTitulo() + " - " +
+                                                       "Autor: " + livroOptional.get().getAutor() + " - " +
+                                                       "Editora: " + livroOptional.get().getEditora() + " - " +
+                                                       "Ano de publicação: " + livroOptional.get().getAnoPublicacao()); 
                                 }
                                 else {
                                     System.out.println("Livro não encontrado!");

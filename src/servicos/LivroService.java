@@ -1,5 +1,7 @@
 package servicos;
 import java.util.List;
+import java.util.Optional;
+
 import entidades.Livro;
 import java.util.ArrayList;
 
@@ -18,12 +20,12 @@ public class LivroService {
         return livros;
     }
 
-    public Livro buscarPorCodigo(int codigo) {
+    public Optional<Livro> buscarPorCodigo(int codigo) {
         for(Livro l : livros) {
             if(l.getCodigoLivro() == codigo) {
-                return l;
+                return Optional.of(l);
             }
         }
-        return null;
+        return Optional.empty();
     }
 }
