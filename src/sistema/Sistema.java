@@ -1,4 +1,5 @@
 package sistema;
+import java.util.Optional;
 import java.util.Scanner;
 import entidades.Livro;
 import entidades.Usuario;
@@ -116,14 +117,14 @@ public class Sistema {
                                 int buscarMatricula = scan.nextInt();
                                 scan.nextLine();
 
-                                Usuario usuarioEncontrado = usuarioService.buscarPorMatricula(buscarMatricula);
+                                Optional<Usuario> usuarioOptional = usuarioService.buscarPorMatricula(buscarMatricula);
 
-                                if(usuarioEncontrado != null) {
+                                if(usuarioOptional.isPresent()) {
                                     System.out.println("Usuário encontrado!");
-                                    System.out.println("Nome: " + usuarioEncontrado.getNome() + " - " +
-                                                       "Curso: " + usuarioEncontrado.getCurso() + " - " +
-                                                       "Telefone: " + usuarioEncontrado.getTelefone() + " - " +
-                                                       "Data de cadastro: " + usuarioEncontrado.getDataCadastro());
+                                    System.out.println("Nome: " + usuarioOptional.get().getNome() + " - " +
+                                                       "Curso: " + usuarioOptional.get().getCurso() + " - " +
+                                                       "Telefone: " + usuarioOptional.get().getTelefone() + " - " +
+                                                       "Data de cadastro: " + usuarioOptional.get().getDataCadastro());
 
                                 }
                                 else {

@@ -1,5 +1,7 @@
 package servicos;
 import java.util.List;
+import java.util.Optional;
+
 import entidades.Usuario;
 import java.util.ArrayList;
 
@@ -18,12 +20,12 @@ public class UsuarioService {
         return usuarios;
     }
 
-    public Usuario buscarPorMatricula(int matricula) {
+    public Optional<Usuario> buscarPorMatricula(int matricula) {
         for (Usuario u : usuarios) {
-            if(u.getMatricula() == matricula) {
-                return u;
+            if (u.getMatricula() == matricula) {
+                return Optional.of(u);
             }
         }
-        return null;
+        return Optional.empty();
     }
 }
