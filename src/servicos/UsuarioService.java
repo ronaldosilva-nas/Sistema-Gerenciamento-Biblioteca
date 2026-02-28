@@ -1,7 +1,6 @@
 package servicos;
 import java.util.List;
 import java.util.Optional;
-
 import entidades.Usuario;
 import java.util.ArrayList;
 

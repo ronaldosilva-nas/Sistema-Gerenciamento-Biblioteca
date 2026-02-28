@@ -5,13 +5,14 @@ import entidades.Livro;
 import entidades.Usuario;
 import servicos.LivroService;
 import servicos.UsuarioService;
+import servicos.EmprestimoService;
 
 public class Sistema {
     public static void main(String[] args) {
-
         Scanner scan = new Scanner(System.in);
         LivroService livroService = new LivroService();
         UsuarioService usuarioService = new UsuarioService();
+        EmprestimoService emprestimoServico = new EmprestimoService(usuarioService, livroService);
         int op = 0;
         
         // Menu principal do sistema
@@ -165,7 +166,16 @@ public class Sistema {
 
                         switch(opUsuario) {
                             case 1:
-                                System.out.println("Empréstismo realizado");
+                                System.out.println("Informe a matrícula do usuário:");
+                                int matriculaUsuario = scan.nextInt();
+                                scan.nextLine();
+
+                                System.out.println("Informe o código do livro:");
+                                int codigoLivro = scan.nextInt();
+                                scan.nextLine();
+
+                                emprestimoServico.realizarEmprestimo(matriculaUsuario, codigoLivro);
+                                
                                 break;
                             case 2:
                                 System.out.println("Devolução realizada");
