@@ -10,6 +10,7 @@ import servicos.EmprestimoService;
 
 public class Sistema {
     public static void main(String[] args) {
+
         Scanner scan = new Scanner(System.in);
         LivroService livroService = new LivroService();
         UsuarioService usuarioService = new UsuarioService();
@@ -43,7 +44,7 @@ public class Sistema {
                         System.out.println("7 - Relatórios");
                         System.out.println("8 - Busca avançada");
                         System.out.println("9 - Sair");
-                        System.out.println("Informe a opção desejada ou digite (9) para sair");
+                        System.out.println("Informe a opção desejada ou digite (9) para sair.");
                         opAdmin = scan.nextInt();
 
                         switch(opAdmin) {
@@ -69,7 +70,7 @@ public class Sistema {
 
                                 livroService.cadastrarLivro(livro);
 
-                                System.out.println("Livro cadastrado com sucesso!");
+                                System.out.println("Livro cadastrado com sucesso.");
 
                                 break;
                             case 2:
@@ -105,7 +106,7 @@ public class Sistema {
 
                                 usuarioService.cadastrarUsuario(usuario);
 
-                                System.out.println("Usuário cadastrado com sucesso! " + "data: " + usuario.getDataCadastro());
+                                System.out.println("Usuário cadastrado com sucesso. " + "data: " + usuario.getDataCadastro());
 
                                 break;
                             case 4: 
@@ -143,7 +144,7 @@ public class Sistema {
                                     System.out.println("=========================================================");
                                 }
                                 else {
-                                    System.out.println("Usuário não encontrado!");
+                                    System.out.println("Usuário não encontrado.");
                                 }
 
                                 break;
@@ -164,10 +165,10 @@ public class Sistema {
                                         System.out.println("Data de devolução: " + e.getDevolucaoPrevista());
 
                                         if(!e.isAtivo()) {
-                                            System.out.println("Status: livro devolvido");
+                                            System.out.println("Status: livro devolvido.");
                                         } 
                                         else {
-                                            System.out.println("Status: empréstimo em andamento");
+                                            System.out.println("Status: empréstimo em andamento.");
                                         }
                                         System.out.println();
                                         System.out.println("=========================================================");
@@ -245,12 +246,27 @@ public class Sistema {
                                     System.out.println("=========================================================");
                                 }
                                 else {
-                                    System.out.println("Livro não encontrado!");
+                                    System.out.println("Livro não encontrado.");
                                 }
 
                                 break;
                             case 4:
-                                System.out.println("Empréstimo renovado");
+                                //Renovar empréstimo
+                                System.out.println("Informe o código do empréstimo:");
+                                int codigoRenovarEmprestimo = scan.nextInt();
+                                scan.nextLine();
+
+                                System.out.println("Informe a quantidade de dias para renovação, limite máximo de 7 dias:");
+                                int dias = scan.nextInt();
+                                scan.nextLine();
+
+                                if(dias > 0 && dias <= 7) {
+                                    emprestimoService.renovarEmprestimo(codigoRenovarEmprestimo, dias);
+                                }
+                                else {
+                                    System.out.println("Quantidade de dias não permitido, tente novamente.");
+                                }
+
                                 break;
                             case 5:
                                 System.out.println("Executando busca avançada");

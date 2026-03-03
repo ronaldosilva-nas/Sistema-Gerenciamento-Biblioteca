@@ -45,4 +45,8 @@ public class Emprestimo {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
+
+    public void renovar(int dias) {
+        this.devolucaoPrevista = this.devolucaoPrevista.plusDays(dias);
+    }
 }
