@@ -1,6 +1,7 @@
 package sistema;
 import java.util.Optional;
 import java.util.Scanner;
+import entidades.Emprestimo;
 import entidades.Livro;
 import entidades.Usuario;
 import servicos.LivroService;
@@ -12,10 +13,10 @@ public class Sistema {
         Scanner scan = new Scanner(System.in);
         LivroService livroService = new LivroService();
         UsuarioService usuarioService = new UsuarioService();
-        EmprestimoService emprestimoServico = new EmprestimoService(usuarioService, livroService);
+        EmprestimoService emprestimoService = new EmprestimoService(usuarioService, livroService);
         int op = 0;
         
-        // Menu principal do sistema
+        //Menu principal do sistema
         do {
             System.out.println("BEM VINDO AO SISTEMA DE GERENCIAMENTO DE BIBLIOTECA");
             System.out.println("================ Menu Principal ================");
@@ -30,7 +31,7 @@ public class Sistema {
                     
                 int opAdmin = 0;
 
-                    // Submenu de opções da administração
+                    //Submenu de opções da administração
                     do {
                         System.out.println("================ Menu administração ================");
                         System.out.println("1 - Cadastrar livro");
@@ -73,11 +74,16 @@ public class Sistema {
                                 break;
                             case 2:
                                 //Listar livros cadastrados
+                                int proximoLivro = 1;
                                 for (Livro l : livroService.getLivros()) {
-                                    System.out.println("Código: " + l.getCodigoLivro() + " - " + 
-                                                       "Título: " + l.getTitulo() + " - " + 
-                                                       "Autor: " + l.getAutor() + " - " +
-                                                       "Ano de publicação: " + l.getAnoPublicacao());
+                                    System.out.println("================ Livro - " + proximoLivro++ + " ================");
+                                    System.out.println();
+                                    System.out.println("Código: " + l.getCodigoLivro()); 
+                                    System.out.println("Título: " + l.getTitulo()); 
+                                    System.out.println("Autor: " + l.getAutor());
+                                    System.out.println("Ano de publicação: " + l.getAnoPublicacao());
+                                    System.out.println();
+                                    System.out.println("=========================================================");
                                 }
                                 break;
                             case 3:
@@ -104,12 +110,18 @@ public class Sistema {
                                 break;
                             case 4: 
                                 //Listar usuários cadastrados
+                                int proximoUsuario = 1;
+
                                 for (Usuario l : usuarioService.getUsuarios()) {
-                                    System.out.println("Matrícula: " + l.getMatricula() + " - " + 
-                                                       "Nome: " + l.getNome() + " - " + 
-                                                       "Curso: " + l.getCurso() + " - " +
-                                                       "Telefone: " + l.getTelefone() + " - " +
-                                                       "Data de cadastro: " + l.getDataCadastro());
+                                    System.out.println("================ Usuário - " + proximoUsuario++ + " ================");
+                                    System.out.println();
+                                    System.out.println("Matrícula: " + l.getMatricula()); 
+                                    System.out.println("Nome: " + l.getNome()); 
+                                    System.out.println("Curso: " + l.getCurso());
+                                    System.out.println("Telefone: " + l.getTelefone());
+                                    System.out.println("Data de cadastro: " + l.getDataCadastro());
+                                    System.out.println();
+                                    System.out.println("=========================================================");
                                 }                   
                                 break;    
                             case 5: 
@@ -121,12 +133,14 @@ public class Sistema {
                                 Optional<Usuario> usuarioOptional = usuarioService.buscarPorMatricula(buscarMatricula);
 
                                 if(usuarioOptional.isPresent()) {
-                                    System.out.println("Usuário encontrado!");
-                                    System.out.println("Nome: " + usuarioOptional.get().getNome() + " - " +
-                                                       "Curso: " + usuarioOptional.get().getCurso() + " - " +
-                                                       "Telefone: " + usuarioOptional.get().getTelefone() + " - " +
-                                                       "Data de cadastro: " + usuarioOptional.get().getDataCadastro());
-
+                                    System.out.println("================ Usuário encontrado ================");
+                                    System.out.println();
+                                    System.out.println("Nome: " + usuarioOptional.get().getNome());
+                                    System.out.println("Curso: " + usuarioOptional.get().getCurso());
+                                    System.out.println("Telefone: " + usuarioOptional.get().getTelefone());
+                                    System.out.println("Data de cadastro: " + usuarioOptional.get().getDataCadastro());
+                                    System.out.println();
+                                    System.out.println("=========================================================");
                                 }
                                 else {
                                     System.out.println("Usuário não encontrado!");
@@ -134,7 +148,31 @@ public class Sistema {
 
                                 break;
                             case 6: 
-                                System.out.println("Listando empréstimos");
+                                //Listar empréstimos
+                                if(emprestimoService.getEmprestimo().isEmpty()){
+                                    System.out.println("Nenhum empréstimo realizado.");
+                                }
+                                else {
+                                    int proximoEmprestimo = 1;
+                                    for (Emprestimo e : emprestimoService.getEmprestimo()) {
+                                        System.out.println("================ Empréstimo - " + proximoEmprestimo++ + " ================");
+                                        System.out.println();
+                                        System.out.println("Código de empréstimo: " + e.getCodigoEmprestimo());
+                                        System.out.println("Código do livro: " + e.getCodigoLivro()); 
+                                        System.out.println("Matrícula do usuário: " + e.getMatriculaUsuario());
+                                        System.out.println("Data do empréstimo: " + e.getDataEmprestimo());
+                                        System.out.println("Data de devolução: " + e.getDevolucaoPrevista());
+
+                                        if(!e.isAtivo()) {
+                                            System.out.println("Status: livro devolvido");
+                                        } 
+                                        else {
+                                            System.out.println("Status: empréstimo em andamento");
+                                        }
+                                        System.out.println();
+                                        System.out.println("=========================================================");
+                                    }    
+                                }       
                                 break;
                             case 7: 
                                 System.out.println("Exibindo relatório");
@@ -151,7 +189,7 @@ public class Sistema {
                 case 2:
                     int opUsuario = 0;
 
-                    // Submenu para opções de usuários
+                    //Submenu para opções de usuários
                     do {
                         
                         System.out.println("================ Menu usuário ================");
@@ -166,6 +204,7 @@ public class Sistema {
 
                         switch(opUsuario) {
                             case 1:
+                                //Realizar empréstimos
                                 System.out.println("Informe a matrícula do usuário:");
                                 int matriculaUsuario = scan.nextInt();
                                 scan.nextLine();
@@ -174,11 +213,17 @@ public class Sistema {
                                 int codigoLivro = scan.nextInt();
                                 scan.nextLine();
 
-                                emprestimoServico.realizarEmprestimo(matriculaUsuario, codigoLivro);
-                                
+                                emprestimoService.realizarEmprestimo(matriculaUsuario, codigoLivro);
+
                                 break;
                             case 2:
-                                System.out.println("Devolução realizada");
+                                //Realizar devolução
+                                System.out.println("Informe o código do empréstimo:");
+                                int codigoEmprestimo = scan.nextInt();
+                                scan.nextLine();
+
+                                emprestimoService.realizarDevolucao(codigoEmprestimo);
+
                                 break;
                             case 3:
                                 //Bucar livro
@@ -189,11 +234,15 @@ public class Sistema {
                                 Optional<Livro> livroOptional = livroService.buscarPorCodigo(buscarCodigo);
 
                                 if(livroOptional.isPresent()) {
+                                    System.out.println("================ Livro encontrado ================");
+                                    System.out.println();
                                     System.out.println("Livro encontrado!");
-                                    System.out.println("Título: " + livroOptional.get().getTitulo() + " - " +
-                                                       "Autor: " + livroOptional.get().getAutor() + " - " +
-                                                       "Editora: " + livroOptional.get().getEditora() + " - " +
-                                                       "Ano de publicação: " + livroOptional.get().getAnoPublicacao()); 
+                                    System.out.println("Título: " + livroOptional.get().getTitulo());
+                                    System.out.println("Autor: " + livroOptional.get().getAutor());
+                                    System.out.println("Editora: " + livroOptional.get().getEditora());
+                                    System.out.println("Ano de publicação: " + livroOptional.get().getAnoPublicacao());
+                                    System.out.println();
+                                    System.out.println("=========================================================");
                                 }
                                 else {
                                     System.out.println("Livro não encontrado!");

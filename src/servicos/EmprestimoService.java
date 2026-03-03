@@ -18,6 +18,10 @@ public class EmprestimoService {
         this.emprestimo = new ArrayList<>();
     }
 
+    public List<Emprestimo> getEmprestimo() { 
+        return emprestimo;
+    }
+
     public void realizarEmprestimo(int matricula, int codigo) {
         
         Optional<Usuario> usuarioOptional = usuarioService.buscarPorMatricula(matricula);
@@ -51,5 +55,32 @@ public class EmprestimoService {
         emprestimo.setAtivo(true);
 
         System.out.println("Empréstimo realizado com sucesso!");
+    }
+
+    public void realizarDevolucao(int codigoEmprestimo) {
+
+        for (Emprestimo e : emprestimo) {
+
+            if (e.getCodigoEmprestimo() == codigoEmprestimo) {
+
+                if (!e.isAtivo()) {
+                    System.out.println("Esse empréstimo já foi finalizado");
+                    return;
+                }
+
+                e.setAtivo(false);
+
+                Optional<Livro> livroOptional = livroService.buscarPorCodigo(e.getCodigoLivro());
+
+                if (livroOptional.isPresent()) {
+                    livroOptional.get().setDisponivel(true);
+                }
+
+                System.out.println("Devolução realizada com sucesso!");
+                return;
+            }
+        }
+
+        System.out.println("Empréstimo não encontrado");
     }
 }
