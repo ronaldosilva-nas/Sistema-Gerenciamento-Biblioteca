@@ -1,18 +1,80 @@
-## Getting Started
+# 📚 Sistema de Biblioteca em Java
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Este projeto consiste em um sistema simples de gerenciamento de biblioteca, desenvolvido em Java, com o objetivo de praticar conceitos fundamentais de programação orientada a objetos e organização de código.
 
-## Folder Structure
+---
 
-The workspace contains two folders by default, where:
+## 🚀 Objetivo
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+O projeto foi criado com foco em aprendizado, abordando:
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+* Programação Orientada a Objetos (POO)
+* Separação de responsabilidades
+* Estrutura em camadas (entidades, servicos, sistema)
+* Manipulação de listas com Collections
+* Injeção de dependências
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+---
 
-## Dependency Management
+## ⚙️ Funcionalidades
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+* 📖 Cadastro de livros
+* 👤 Cadastro de usuários
+* 🔄 Empréstimo de livros
+* ✅ Devolução de livros
+* 🔍 Listagem de livros disponíveis
+
+---
+
+## 🛠️ Tecnologias utilizadas
+
+* Java
+* Collections (List, ArrayList)
+* Paradigma Orientado a Objetos
+
+---
+
+## 📂 Estrutura do Projeto
+
+src/
+├── entidades
+├── servicos
+├── sistema
+
+**Descrição das camadas:**
+
+* **entidades** → Representa as entidades (Livro, Usuário, Empréstimo)
+* **servicos** → Contém as regras de negócio
+* **sistema** → Classe principal para execução do sistema
+
+---
+
+## ▶️ Como executar o projeto
+
+1. Clone o repositório:
+
+git clone https://github.com/ronaldosilva-nas/Sistema-Gerenciamento-Biblioteca.git
+
+2. Abra o projeto em uma IDE
+
+3. Execute a classe `Sistema`
+
+---
+
+## 📈 Melhorias futuras
+
+* Implementar interface gráfica
+* Integrar com banco de dados
+* Criar API com Spring Boot
+* Aplicar padrões de projeto
+* Adicionar testes automatizados
+
+---
+
+## 👨‍💻 Autor
+
+Desenvolvido por Ronaldo Silva
+
+https://www.linkedin.com/in/ronaldo-silva-nascimento/
+GitHub: https://github.com/ronaldosilva-nas
+
