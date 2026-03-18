@@ -75,6 +75,5 @@ git clone https://github.com/ronaldosilva-nas/Sistema-Gerenciamento-Biblioteca.g
 
 Desenvolvido por Ronaldo Silva
 
-https://www.linkedin.com/in/ronaldo-silva-nascimento/
+Linkedin: https://www.linkedin.com/in/ronaldo-silva-nascimento/
 GitHub: https://github.com/ronaldosilva-nas
-
