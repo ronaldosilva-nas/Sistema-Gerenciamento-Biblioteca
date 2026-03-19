@@ -227,7 +227,7 @@ public class Sistema {
 
                                 break;
                             case 3:
-                                //Bucar livro
+                                //Buscar livro
                                 System.out.println("Para buscar livro, informe o código: ");
                                 int buscarCodigo = scan.nextInt();
                                 scan.nextLine();

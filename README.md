@@ -37,9 +37,9 @@ O projeto foi criado com foco em aprendizado, abordando:
 ## 📂 Estrutura do Projeto
 
 src/
-├── entidades
-├── servicos
-├── sistema
+├── entidades <br>
+├── servicos <br>
+├── sistema <br>
 
 **Descrição das camadas:**
 
@@ -75,5 +75,5 @@ git clone https://github.com/ronaldosilva-nas/Sistema-Gerenciamento-Biblioteca.g
 
 Desenvolvido por Ronaldo Silva
 
-Linkedin: https://www.linkedin.com/in/ronaldo-silva-nascimento/
+Linkedin: https://www.linkedin.com/in/ronaldo-silva-nascimento/ <br>
 GitHub: https://github.com/ronaldosilva-nas
