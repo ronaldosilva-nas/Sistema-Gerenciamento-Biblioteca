@@ -294,7 +294,9 @@ public class Sistema {
                             
                                 break;
                             case 7: 
-                                System.out.println("Exibindo relatório");
+                                
+                                emprestimoService.relatorioLivroMaisEmprestado();    
+
                                 break;
                             case 8: 
                                 System.out.println("Realizando busca avançada");

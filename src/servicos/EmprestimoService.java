@@ -1,7 +1,10 @@
 package servicos;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import entidades.Emprestimo;
 import entidades.Livro;
 import entidades.Usuario;
@@ -108,5 +111,50 @@ public class EmprestimoService {
         }
 
         System.out.println("Empréstimo não encontrado.");
+    }
+
+    public void relatorioLivroMaisEmprestado() {
+
+        if(livroService.getLivros().isEmpty()) {
+            System.out.println("Nenhum livro cadastrado.");
+            return;
+        }
+
+        if(emprestimo.isEmpty()) {
+            System.out.println("Nenhum empréstimo realizado.");
+            return;
+        }
+
+        Map<Integer, Integer> contador = new HashMap<>();
+
+        for (Emprestimo e : emprestimo) {
+            int codigo = e.getCodigoLivro();
+            contador.put(codigo, contador.getOrDefault(codigo, 0) + 1);
+        }
+
+        int maiorQuantidade = 0;
+        int codigoMaisEmprestado = -1;
+
+        for(Map.Entry<Integer, Integer> entry : contador.entrySet()) {
+            if(entry.getValue() > maiorQuantidade) {
+                maiorQuantidade = entry.getValue();
+                codigoMaisEmprestado = entry.getKey();
+            }
+        }
+
+        Optional<Livro> livro = livroService.buscarPorCodigo(codigoMaisEmprestado);
+
+        if(livro.isPresent()) {
+            System.out.println("============== Livro mais emprestado ==============");
+            System.out.println();
+            System.out.println("Título: " + livro.get().getTitulo());
+            System.out.println("Autor: " + livro.get().getAutor());
+            System.out.println("Total de empréstimos: " + maiorQuantidade);
+            System.out.println();
+            System.out.println("===================================================");
+        }
+        else {
+            System.out.println("Nenhum livro encontrado.");
+        }    
     }
 }
