@@ -1,4 +1,5 @@
 package sistema;
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 import entidades.Emprestimo;
@@ -146,14 +147,70 @@ public class Sistema {
         }
     }
 
-    //Exibir relatório
-    public static void exibirRelatório() {
-
-    }
-
     //Realizar busca avançada
-    public static void buscaAvancada() {
-        
+    public static void buscaAvancada(Scanner scan, LivroService livroService) {
+
+        int opBusca = 0;
+
+        do {
+            System.out.println("================ Busca Avançada ================");
+            System.out.println("1 - Buscar por título");
+            System.out.println("2 - Buscar por autor");
+            System.out.println("3 - Sair");
+            opBusca = scan.nextInt();
+            scan.nextLine();
+
+            switch (opBusca) {
+                case 1:
+
+                    System.out.println("Informe o título do livro:");
+                    String titulo = scan.nextLine();
+
+                    List<Livro> resultadosTitulo = livroService.buscaPorTitulo(titulo);
+                    
+                    if(resultadosTitulo.isEmpty()) {
+                        System.out.println("Livro não encontrado");
+                    }
+                    else {
+                        for(Livro l : resultadosTitulo) {
+                            System.out.println("================ Livro encontrado ================");
+                            System.out.println();
+                            System.out.println("Código: " + l.getCodigoLivro());
+                            System.out.println("Autor: " + l.getAutor());
+                            System.out.println("Editora: " + l.getEditora());
+                            System.out.println("Ano: " + l.getAnoPublicacao());
+                            System.out.println();
+                            System.out.println("=========================================================");
+                        }    
+                    }
+                    break;
+
+                case 2:
+
+                    System.out.println("Informe o autor do livro:");
+                    String autor = scan.nextLine();
+
+                    List<Livro> resultadosAutor = livroService.buscaPorAutor(autor);
+
+                    if(resultadosAutor.isEmpty()) {
+                        System.out.println("Livro não encontrado");
+                    }
+                    else {
+                        for(Livro l : resultadosAutor) {
+                            System.out.println("================ Livro encontrado ================");
+                            System.out.println();
+                            System.out.println("Código: " + l.getCodigoLivro());
+                            System.out.println("Título: " + l.getTitulo());
+                            System.out.println("Editora: " + l.getEditora());
+                            System.out.println("Ano: " + l.getAnoPublicacao());
+                            System.out.println();
+                            System.out.println("=========================================================");
+                        }    
+                    }
+                    break;
+            }
+        }
+        while(opBusca != 3);
     }
 
     //Realizar empréstimos
@@ -299,7 +356,9 @@ public class Sistema {
 
                                 break;
                             case 8: 
-                                System.out.println("Realizando busca avançada");
+                                
+                                buscaAvancada(scan, livroService);
+
                                 break;                    
                         }
 
@@ -345,7 +404,9 @@ public class Sistema {
 
                                 break;
                             case 5:
-                                System.out.println("Executando busca avançada");
+                                
+                                buscaAvancada(scan, livroService);
+
                                 break;                
                         }
                     } while (opUsuario != 6);

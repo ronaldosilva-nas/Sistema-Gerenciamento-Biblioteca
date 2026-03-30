@@ -27,4 +27,32 @@ public class LivroService {
         }
         return Optional.empty();
     }
+
+    public List<Livro> buscaPorTitulo(String titulo) {
+        List<Livro> resultado = new ArrayList<>();
+
+        for (Livro livro : livros) {
+            boolean matchTitulo = livro.getTitulo().toLowerCase().contains(titulo.toLowerCase());
+
+            if (matchTitulo) {
+                resultado.add(livro);
+            }
+        }
+
+        return resultado;
+    }
+
+    public List<Livro> buscaPorAutor(String autor) {
+        List<Livro> resultado = new ArrayList<>();
+
+        for (Livro livro : livros) {
+            boolean matchAutor = livro.getAutor().toLowerCase().contains(autor.toLowerCase());
+
+            if (matchAutor) {
+                resultado.add(livro);
+            }
+        }
+
+        return resultado;
+    }
 }
